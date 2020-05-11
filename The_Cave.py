@@ -1,10 +1,15 @@
 from sys import exit
 
+### Endgame Fuctions ###########################################################
+
 def win(ending):
+# Tells the user which ending they got (evil, bad, sad, neutral, or good)
+# based on how they interacted with the King.
     print ""
     print "GAME OVER! You've achieved the [{0}] ending.".format(ending)
     print "There are four other endings."
     
+    # Prompts the user to try again or exit the game.
     while True:
         retry = raw_input("> ")
         
@@ -25,6 +30,7 @@ def dead():
     print ""
     print "Play again?"
     
+    # Prompts the user to try again or exit the game.
     while True:
         retry = raw_input("> ")
         
@@ -40,6 +46,11 @@ def dead():
 
 
 def fight():
+# This function.. another day, another commit. I apologize to anyone reading this.
+# The essential structure is simple though.
+# Before the next prompt, the a while loop begins, allowing the user to fail to
+# answer as many times as they want.
+# Next, the prompt, and then, the various dialogue paths.
     while True:
         print "The spear is no longer yours to command. Without a weapon, he will surely kill you."
         next = raw_input("> ")
@@ -139,6 +150,8 @@ def fight():
 
 
 def good():
+    # At this point, no matter what the user answers, they'll get the good 
+    # ending.
     print '"Who are you?"'
     print ""
     print "[You do not know.]"
@@ -170,6 +183,9 @@ def good():
         print "It's open. And you can see sunlight."
         ### GOOD ENDING ###
         win("good")
+
+
+### Room Functions (Start Room, Trap Room, etc.) ###############################
 
 
 def start_rm(r_blocked):
@@ -294,6 +310,7 @@ def spider_rm():
             print "Which light do you want to go towards?"
             continue
         elif "spear" in next:
+        # My favorite line
             print "What spear?"
             continue
         else:
@@ -393,6 +410,7 @@ def dungeon_rm(spear, trap_blocked):
             print '"Aaahhh.. yess.. a vistor, yes, hmmm? It\'ssss been ssso long."'
             print '"Would you like to know my sssecretsss, yesss?"'
             print "Do you accept, reject, or attack the corpse?"
+            # read:"How would you like to die?"
             
             while True:
                 next = raw_input("> ")
@@ -444,14 +462,55 @@ def throne_rm():
     print "The Throne Room is scattered with fallen guard, long since decomposed and fused to the floor."
     print '"You\'re one of Them.." a voice says from the shadows. "You\'ve finally come to take my life."'
     
+    # This x counts the number of times the user has entered an unknown answer
+    # to trigger the evil ending. Once x == 3, all other endings are locked out.
     x = 0
     while True:
         next = raw_input("> ")
         print ""
+             
+        if "attack" in next or "kill" in next or "spear" in next:
+            if instakill == True:
+                print "You walk towards the defeated King. He makes no reaction, save to sob silently."
+                print "You pick up the spear, which is slowly rolling on the smooth stone floor."
+                print "It's cold to the touch, and feels heavier somehow."
+                print ""
+                print 'You raise the spear, preparing to strike. "Just do it, demon." says the King.'
+                print 'You stab the spear into the King. "Finally.." he whispers hoarsely.'
+                print ""
+                print "As the blood begins to run from the King's body, it begins to darken."
+                print "Darkening more and more until it becomes thick, and jet-black."
+                print "It runs deeper and deeper, more than the King could possibly hold."
+                print "It swallows the floor."
+                print "Then the walls."
+                print ""
+                print "Then you."
+                win("evil")
+                ### EVIL ENDING ###
+            else:
+                print "You charge at the King wielding nothing but fists and rage."
+                print "The King is prepared, and plunges the spear deep into you."
+                dead()
+        elif x >= 3:
+            print "The King makes no reaction.. he is truly defeated."
+            print "What are you going to do?"
+            continue
         
-######## BAD ###################################################################        
+        elif x >= 4:
+            print "Just put him out of his misery. Finish what you started."
+            continue.
+            
+        elif "I don't know".lower() in next or "I dont know".lower() in next:
+            print '"YOU DON\'T KNOW?! YOU DON\'T.. you don\'t know.."'
+            print '"And I\'m supposed to believe that?"'
+            
+            while True:
+                next = raw_input("> ")
+                
+                if "I don't know".lower() in next or "I dont know".lower() in next:
+            
         
-        if "yes" in next or "I have" in next.lower() or "I am" in next.lower():
+        elif "yes" in next or "I have" in next.lower() or "I am" in next.lower():
             print '"Then finish what you started, vile creature. If you can."'
             print "A hand shoots out from the shadows, outstretched, and your spear flies to its grip."
             print "The King emerges from the shadows. What will you do?"
@@ -470,7 +529,7 @@ def throne_rm():
                 print '"Do your best, vile creature."'
                 
                 fight()
-            elif "I don't want" in next or "please don't" in next or "I'm not" in next or "lying" in next:
+            elif "stop" in next or "I don't want" in next or "please don't" in next or "I'm not" in next or "lying" in next:
                 good()
                 
             else:
@@ -510,29 +569,7 @@ def throne_rm():
             print '"They.. They killed everyone.. I\'m.. the only one left. I\'m sorry. I do not wish to continue."'
             good()
             
-######## EVIL ##################################################################            
-        elif "attack" in next or "kill" in next or "spear" in next:
-            if instakill == True:
-                print "You walk towards the defeated King. He makes no reaction, save to sob silently."
-                print "You pick up the spear, which is slowly rolling on the smooth stone floor."
-                print "It's cold to the touch, and feels heavier somehow."
-                print ""
-                print 'You raise the spear, preparing to strike. "Just do it, demon." says the King.'
-                print 'You stab the spear into the King. "Finally.." he whispers hoarsely.'
-                print ""
-                print "As the blood begins to run from the King's body, it begins to darken."
-                print "Darkening more and more until it becomes thick, and jet-black."
-                print "It runs deeper and deeper, more than the King could possibly hold."
-                print "It swallows the floor."
-                print "Then the walls."
-                print ""
-                print "Then you."
-                win("evil")
-                ### EVIL ENDING ###
-            else:
-                print "You charge at the King wielding nothing but fists and rage."
-                print "The King is prepared, and plunges the spear deep into you."
-                dead()
+######## EVIL COUNTER ##########################################################            
         else:
             x += 1
             if x == 1:
@@ -541,14 +578,45 @@ def throne_rm():
                 print '"Speak clearly. Are you here to kill me?."'
                 continue
             elif x == 2:
+                print '"ENOUGH RIDDLES! Haven\'t I suffered for long enough? An ETERNITY! An eternity"'
+                print '"I\'ve spent, waiting to be freed from this cursed loneliness."'
+                print '"Just give me a straight answer! Please.. is this the end.."'
+                continue
+            elif x == 3:
+                words = next.split()
+                wordcount = len(next)
+                if next == "":
+                    print '"Silence.. just.. silence."'
+                elif wordcount == 1:
+                    zero = next
+                    print '"{0}.." the voice struggles to understand your cruel riddles.'.format(zero)
+                elif wordcount == 2:
+                    zero = words[0]
+                    one = words[1]
+                    print '"{0}.. ..{1}.." the voice struggles to understand your cruel riddles.'.format(zero, one)
+                elif wordcount == 3:
+                    zero = words[0]
+                    one = words[1]
+                    two = words[2]
+                    print '"{0}.. ..{1}.." the voice struggles to understand your cruel riddles.'.format(zero + one, two)
+                else:
+                    zero = words[0]
+                    one = words[1]
+                    two = words(pop)
+                    print '"{0}.. ..{1}.." the voice struggles to understand your cruel riddles.'.format(zero + one, two)
+                
                 print "The spear clatters as it hits the stone floor. The sound echoes through the room."
                 print "The King emerges from the shadows, and collapses onto his knees."
-                print '"I do not undestand you.. please.. just kill me.."'
+                print '"I do not comprehend your sick games.. please.. just kill me.."'
                 instakill = True
                 continue
-            elif x > 2:
+            elif x > 4:
                 print '".."'
                 continue
 
+
+
+
+### Start of Actual Program ####################################################
 
 start_rm(False)
