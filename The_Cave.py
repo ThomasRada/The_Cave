@@ -4,18 +4,10 @@ def win(ending):
     print ""
     print "GAME OVER! You've achieved the [{0}] ending.".format(ending)
     print "There are four other endings."
-    print ""
-    print "Press ENTER to exit."
-    ready = raw_input("> ")
-    exit(0)
 
 
 def dead():
     print "GAME OVER.\n"
-    print ""
-    print "Press ENTER to exit."
-    ready = raw_input("> ")
-    exit(0)
 
 
 def fight():
@@ -530,4 +522,17 @@ def throne_rm():
                 continue
 
 
-start_rm(False)
+while True:
+    start_rm(False)
+    print ""
+    print "Retry?"
+    retry = raw_input("> ")
+    if retry == "yes" or retry == "y":
+        continue
+    elif retry == "no" or retry == "n":
+        print "Press ENTER to exit."
+        ready = raw_input("> ")
+        exit(0)
+    else:
+        print "Enter 'Yes' or 'Y' to try again, or 'No' or 'N' to quit."
+        continue.
