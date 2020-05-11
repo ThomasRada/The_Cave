@@ -178,8 +178,9 @@ def good():
         print "The King walks very close to you."
         print '"That\'s.. it can\'t be.."'
         print ""
-        print "The King embraces you, with tears in his eyes."
-        print '"My daughter.. I love you."'
+        print "The King is inches away from you, his eyes desperately searching yours."
+        print "Then he embraces you, with tears in his eyes."
+        print '"My daughter.. I\'m so sorry.. I thought I\'d lost you.."'
         print '"Thank you."'
         print ""
         print "You close your eyes, and just like that, the King is gone."
@@ -533,11 +534,10 @@ def throne_rm():
                 print '"Very well." says the King, with weary relief in his voice.'
                 print "Just as you reach the King, the spear flies from your hands and into his."
                 print '"Do your best, vile creature."'
-                
                 fight()
-            elif "stop" in next or "i don't want" in next or "please don't" in next or "i'm not" in next or "lying" in next:
-                good()
                 
+            elif "stop" in next or "dont" in next or "don't" or "truth" in next or "i'm not" in next or "lying" in next:
+                good()
             else:
                 print "I didn't understand that."
                 continue
