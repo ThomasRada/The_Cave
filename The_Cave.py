@@ -5,11 +5,16 @@ def win(ending):
     print "GAME OVER! You've achieved the [{0}] ending.".format(ending)
     print "There are four other endings."
     print ""
+    print "Press ENTER to exit."
+    ready = raw_input("> ")
     exit(0)
 
 
 def dead():
     print "GAME OVER.\n"
+    print ""
+    print "Press ENTER to exit."
+    ready = raw_input("> ")
     exit(0)
 
 
