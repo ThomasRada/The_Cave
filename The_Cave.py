@@ -11,13 +11,15 @@ def win(ending):
     
     # Prompts the user to try again or exit the game.
     while True:
-        retry = raw_input("> ")
+        print "Play again?"
+        print ""
+        retry = raw_input("> ").lower()
         
         if retry == "yes" or retry == "y":
             start_rm(False)
         elif retry == "no" or retry == "n":
             print "Press ENTER to exit."
-            ready = raw_input("> ")
+            ready = raw_input("> ").lower()
             exit(0)
         else:
             print "Enter 'Yes' or 'Y' to play again, or 'No' or 'N' to quit."
@@ -29,16 +31,17 @@ def dead():
     print "GAME OVER.\n"
     print ""
     print "Play again?"
+    print ""
     
     # Prompts the user to try again or exit the game.
     while True:
-        retry = raw_input("> ")
+        retry = raw_input("> ").lower()
         
         if retry == "yes" or retry == "y":
             start_rm(False)
         elif retry == "no" or retry == "n":
             print "Press ENTER to exit."
-            ready = raw_input("> ")
+            ready = raw_input("> ").lower()
             exit(0)
         else:
             print "Enter 'Yes' or 'Y' to play again, or 'No' or 'N' to quit."
@@ -53,7 +56,7 @@ def fight():
 # Next, the prompt, and then, the various dialogue paths.
     while True:
         print "The spear is no longer yours to command. Without a weapon, he will surely kill you."
-        next = raw_input("> ")
+        next = raw_input("> ").lower()
         
         if "flee" in next or "leave" in next:
             print "If you try to squeeze through the doors again, the King will surely kill you."
@@ -74,13 +77,13 @@ def fight():
             print "Where do you want to search for a weapon?"
             
             while True:
-                next = raw_input("> ")
+                next = raw_input("> ").lower()
                 if "guard" in next or "corpse" in next or "body" in next or "bodies" in next:
                     print "You scramble to a nearby corpse, searching for anything usable."
                     print "You find a Guard's Shortsword! The King raises his arm vertically, preparing to strike."
                     
                     while True:
-                        next = raw_input("> ")
+                        next = raw_input("> ").lower()
                         if "attack" in next or "kill" in next or "sword" in next:
                             print "You swing your Guard's Shortsword at the King, but you are too slow."
                             print "The King's vertical strike impales you. Perhaps if you had dodged.."
@@ -89,7 +92,7 @@ def fight():
                             print "You dodge to the side just in time for the King's spear to pierce the floor."
                             print "The spear is lodged in the floor."
                             while True:
-                                next = raw_input("> ")
+                                next = raw_input("> ").lower()
                                 if "attack" in next or "kill" in next or "sword" in next:
                                     print "You swing hard at the disadvantaged King, slashing his side."
                                     print "The King screams in agony. \"DAMN YOU! I\'LL KILL YOU!\""
@@ -97,7 +100,7 @@ def fight():
                                     print '"Just kill me already! You monsters have taken everything else from me."'
                                     print "Kill or spare the King, or flee while you can."
                                     while True:
-                                        next = raw_input("> ")
+                                        next = raw_input("> ").lower()
                                         if "attack" in next or "kill" in next or "sword" in next:
                                             print '"You approach the King, sword at your side. "Wait.. no, no. It cannot be.." he begins.'
                                             print 'You raise your sword high. "WAIT, NO STO-" You strike the King down.'
@@ -152,6 +155,7 @@ def fight():
 def good():
     # At this point, no matter what the user answers, they'll get the good 
     # ending.
+    print '".."'
     print '"Who are you?"'
     print ""
     print "[You do not know.]"
@@ -160,11 +164,11 @@ def good():
     print '"Where did you get that spear?"'
     
     while True:
-        next = raw_input("> ")
-        if (("monster" or "spider" or "nightmare" "centipede" or "creature") in next) and "killed" in next:
+        next = raw_input("> ").lower()
+        if "monster" in next or "spider" in next or "nightmare" in next or "centipede" in next or "creature" in next or "killed" in next:
             print '"You.. you killed one of them?"'
         elif "armory" in next:
-            print '"You.. you found it in the armory?"'
+            print '"You.. you found it in the old armory?"'
         elif "found" in next:
             print '"You.. you just found it?"'
         else:
@@ -176,7 +180,7 @@ def good():
         print ""
         print "The King embraces you, with tears in his eyes."
         print '"My daughter.. I love you."'
-        print "Thank you."
+        print '"Thank you."'
         print ""
         print "You close your eyes, and just like that, the King is gone."
         print "Now however, a large ornate metal gate stands where before stood stone wall."
@@ -200,10 +204,13 @@ def start_rm(r_blocked):
         print "The right door is seeping blood."
     
     while True:
-        next = raw_input("> ")
+        next = raw_input("> ").lower()
         print ""
         
-        if "left" in next:
+        if next == "king":
+            throne_rm()
+            # debugging cheat code
+        elif "left" in next:
             spider_rm()
         elif "right" in next:
             if r_blocked == True:
@@ -224,12 +231,12 @@ def trap_rm():
     print "You can either try to block the gears or pry the door open."
     
     while True:
-        next = raw_input("> ")
+        next = raw_input("> ").lower()
         print ""
     
         if "block" in next or "gears" in next:
             print "Using what?"
-            next = raw_input("> ")
+            next = raw_input("> ").lower()
             print ""
             
             if "skeleton" in next or "bone" in next:
@@ -262,7 +269,7 @@ def spider_rm():
     print "A glint of light catches your eye from your right though.."
     
     while True:
-        next = raw_input("> ")
+        next = raw_input("> ").lower()
         print ""
         
         if "torchlight" in next or "left" in next or "torch" in next:
@@ -275,7 +282,7 @@ def spider_rm():
             print "Investigate the contents of the webs, or flee?"
             
             while True:
-                next = raw_input("> ")
+                next = raw_input("> ").lower()
                 print ""
                 
                 if "flee" in next:
@@ -288,7 +295,7 @@ def spider_rm():
                     print "In front of you lies an ornate metal spear, with a leather sash."
                     print "It's warm to the touch."
                     while True:
-                        next = raw_input("> ")
+                        next = raw_input("> ").lower()
                         print 
                         if "flee" in next or "leave" in next or "run" in next:
                             print "You stumble away from the artifact, and into the creature."
@@ -337,7 +344,7 @@ def castle_rm(spear, first_time, trap_blocked):
         if trap_blocked == True:
             print "The trap has been destroyed. Behind its remains lies a golden door."
     while True:
-        next = raw_input("> ")
+        next = raw_input("> ").lower()
         print ""
         
         if "door" in next:
@@ -354,7 +361,7 @@ def castle_rm(spear, first_time, trap_blocked):
                 print "You feel a warmth radiate from your back."
             
             while True:
-                next = raw_input("> ")
+                next = raw_input("> ").lower()
                 print ""
                 
                 if spear == False and "spear" in next:
@@ -369,7 +376,7 @@ def castle_rm(spear, first_time, trap_blocked):
                     print "As the dust settles, a pair of huge golden doors is revealed behind ripped-off boards."
                     
                     while True:
-                        next = raw_input("> ")
+                        next = raw_input("> ").lower()
                         print ""
                         
                         if "wooden" in next and "door" in next:
@@ -382,7 +389,7 @@ def castle_rm(spear, first_time, trap_blocked):
                         else:
                             print "I didn't understand that."
                             continue
-                elif "dodge" in next or "yes" in next.lower() or "yeah" in next:
+                elif "dodge" in next or "yes" in next or "yeah" in next:
                     print "You dodge backwards.. right into the enormous swinging spike."
                     dead()
                 else:
@@ -402,7 +409,7 @@ def dungeon_rm(spear, trap_blocked):
     print "One corpse, however, still hangs. Search it?"
     
     while True:
-        next = raw_input("> ")
+        next = raw_input("> ").lower().lower()
         print ""
         if "yes" in next or "yeah" in next or "search" in next or "corpse" in next:
             print "You approach the corpse to see if it has anything of use."
@@ -413,7 +420,7 @@ def dungeon_rm(spear, trap_blocked):
             # read:"How would you like to die?"
             
             while True:
-                next = raw_input("> ")
+                next = raw_input("> ").lower().lower()
                 print ""
                 
                 if "attack" in next:
@@ -466,7 +473,7 @@ def throne_rm():
     # to trigger the evil ending. Once x == 3, all other endings are locked out.
     x = 0
     while True:
-        next = raw_input("> ")
+        next = raw_input("> ").lower()
         print ""
              
         if "attack" in next or "kill" in next or "spear" in next:
@@ -498,19 +505,18 @@ def throne_rm():
         
         elif x >= 4:
             print "Just put him out of his misery. Finish what you started."
-            continue.
-            
-        elif "I don't know".lower() in next or "I dont know".lower() in next:
+            continue            
+        elif "i don't know" in next or "i dont know" in next:
             print '"YOU DON\'T KNOW?! YOU DON\'T.. you don\'t know.."'
             print '"And I\'m supposed to believe that?"'
             
             while True:
-                next = raw_input("> ")
+                next = raw_input("> ").lower()
                 
-                if "I don't know".lower() in next or "I dont know".lower() in next:
-            
+                if "i don't know" in next or "i dont know" in next:
+                    good()
         
-        elif "yes" in next or "I have" in next.lower() or "I am" in next.lower():
+        elif "yes" in next or "I have" in next or "I am" in next:
             print '"Then finish what you started, vile creature. If you can."'
             print "A hand shoots out from the shadows, outstretched, and your spear flies to its grip."
             print "The King emerges from the shadows. What will you do?"
@@ -519,9 +525,9 @@ def throne_rm():
 
 ######## MIXED #################################################################
 
-        elif next == "no" or "I'm not" in next.lower() or "not true" in next:
+        elif "no" in next or "i'm not" in next or "not true" in next:
             print '"You lie! I\'ll kill you, every last one of you!"'
-            next = raw_input("> ")
+            next = raw_input("> ").lower()
             if "attack" in next or "kill" in next or "spear" in next:
                 print "You charge towards the King with both hands on the spear."
                 print '"Very well." says the King, with weary relief in his voice.'
@@ -529,7 +535,7 @@ def throne_rm():
                 print '"Do your best, vile creature."'
                 
                 fight()
-            elif "stop" in next or "I don't want" in next or "please don't" in next or "I'm not" in next or "lying" in next:
+            elif "stop" in next or "i don't want" in next or "please don't" in next or "i'm not" in next or "lying" in next:
                 good()
                 
             else:
@@ -539,7 +545,7 @@ def throne_rm():
         elif "who are you" in next:
             print '"You mock me, creature? You know exactly who I am. I care not for your games."' 
             print '"I wish only to join my loved ones."'
-            next = raw_input("> ")
+            next = raw_input("> ").lower()
             print ""
             
             if "attack" in next or "kill" in next or "spear" in next:
@@ -562,10 +568,12 @@ def throne_rm():
                 
 ######## GOOD ##################################################################             
         
-        elif "who are they" in next or "who's they" in next or "I don't want" in next or "please don't" in next or "I'm not" in next or "lying" in next:
-            print '"HAVE I NOT SUFFERED LONG ENOUGH?" screams the King.'
-            print '"You.. you\'re really not one of Them?"'
-            print '"We have no name for Them. Terrible creatures.. manifestations of death."'
+        elif ("who are they" in next or "who's they" in next or "whos they" in next or "i don't want" in next 
+        or "please don't" in next or "i'm not" in next or "lying" in next or "they?" in next):
+            print '"WHO ARE THEY? DO YOU JEST, YOU.. you.." screams the King.'
+            print '"You.. really have no idea? You\'re really not one of Them?"'
+            print "[You shake your head.]"
+            print '"We have no name for Them. Unnatural creatures.. manifestations of death."'
             print '"They.. They killed everyone.. I\'m.. the only one left. I\'m sorry. I do not wish to continue."'
             good()
             
@@ -583,7 +591,7 @@ def throne_rm():
                 print '"Just give me a straight answer! Please.. is this the end.."'
                 continue
             elif x == 3:
-                words = next.split()
+                words = (next).split()
                 wordcount = len(next)
                 if next == "":
                     print '"Silence.. just.. silence."'
@@ -602,8 +610,8 @@ def throne_rm():
                 else:
                     zero = words[0]
                     one = words[1]
-                    two = words(pop)
-                    print '"{0}.. ..{1}.." the voice struggles to understand your cruel riddles.'.format(zero + one, two)
+                    two = words.pop()
+                    print '"{0}.. ..{1}.." the voice struggles to understand your cruel riddles.'.format(zero + " " + one, two)
                 
                 print "The spear clatters as it hits the stone floor. The sound echoes through the room."
                 print "The King emerges from the shadows, and collapses onto his knees."
