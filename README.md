@@ -8,5 +8,5 @@ Feel free to distribute/modify/etc. as outlined in the MIT+Common Clause license
 
 POSSIBLE ISSUES:
 - Sometimes The_Cave.exe's icon doesn't load properly.
-  - Workaround: Icon can be replaced using [Resource Hacker](http://www.angusj.com/resourcehacker/).  
+  - Workaround: Icon (in Art Assets) can be replaced using [Resource Hacker](http://www.angusj.com/resourcehacker/).  
     Alternatively, icon reloads itself when Resource Hacker is opened, perhaps out of fear of the repercussions of its insubordination.
